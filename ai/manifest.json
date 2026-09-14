@@ -1,0 +1,65 @@
+{
+  "project": {
+    "name": "Credit Union Mobile Banking",
+    "type": "mobile_banking",
+    "platform": "flutter",
+    "description": "A secure mobile banking application for credit union members"
+  },
+
+  "technology": {
+    "framework": "Flutter",
+    "language": "Dart",
+    "architecture": "Clean Architecture",
+    "state_management": "BLoC",
+    "dependency_injection": "GetIt",
+    "networking": "Dio",
+    "local_storage": "SharedPreferences",
+    "routing": "GoRouter",
+    "api_style": "REST"
+  },
+
+  "modules": [
+    "authentication",
+    "dashboard",
+    "accounts",
+    "transactions",
+    "transfers",
+    "loans",
+    "deposits",
+    "payments",
+    "statements",
+    "notifications",
+    "profile"
+  ],
+
+  "authentication": {
+    "login": "mobile_and_password",
+    "otp": true,
+    "biometric": true,
+    "session_management": true
+  },
+
+  "design": {
+    "style": "modern_financial",
+    "responsive": true,
+    "dark_mode": true,
+    "primary_color": "#242269"
+  },
+
+  "navigation": {
+    "initial_route": "/login",
+
+    "authenticated": {
+      "/dashboard": "DashboardPage",
+      "/accounts": "AccountsPage",
+      "/transactions": "TransactionsPage",
+      "/loans": "LoansPage",
+      "/profile": "ProfilePage"
+    }
+  },
+
+  "backend": {
+    "type": "REST_API",
+    "authentication": "token_based"
+  }
+}
