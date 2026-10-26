@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 typedef _Loan = ({
+  String id,
   String title,
   String subtitle,
   String original,
@@ -15,29 +17,31 @@ class LoansPage extends StatelessWidget {
 
   static const _loans = [
     (
+      id: 'home-2048',
       title: 'Home loan',
       subtitle: 'Mortgage · •••• 2048',
-      original: '\$250,000',
-      remaining: '\$185,400',
+      original: '৳250,000',
+      remaining: '৳185,400',
       progress: 0.26,
       rate: '3.9%',
-      due: '\$1,420.00',
+      due: '৳1,420.00',
     ),
     (
+      id: 'auto-7721',
       title: 'Auto loan',
       subtitle: 'Vehicle · •••• 7721',
-      original: '\$35,000',
-      remaining: '\$12,200',
+      original: '৳35,000',
+      remaining: '৳12,200',
       progress: 0.65,
       rate: '4.6%',
-      due: '\$430.00',
+      due: '৳430.00',
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Loans')),
+      appBar: AppBar(title: const Text('Loan accounts')),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
         children: [
@@ -61,7 +65,7 @@ class LoansPage extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        '\$1,850.00 total due',
+                        '৳1,850.00 total due',
                         style: TextStyle(color: Colors.black54),
                       ),
                     ],
@@ -110,11 +114,11 @@ class LoansPage extends StatelessWidget {
             ),
             child: const Column(
               children: [
-                _MetricRow(label: 'Monthly payments', value: '\$1,850.00'),
+                _MetricRow(label: 'Monthly payments', value: '৳1,850.00'),
                 Divider(height: 1),
                 _MetricRow(label: 'Average interest rate', value: '4.25% p.a.'),
                 Divider(height: 1),
-                _MetricRow(label: 'Total repaid', value: '\$87,400.00'),
+                _MetricRow(label: 'Total repaid', value: '৳87,400.00'),
               ],
             ),
           ),
@@ -217,40 +221,17 @@ class LoansPage extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => _showPaymentDialog(context, loan),
+                onPressed: () => context.push('/loans/${loan.id}'),
+                child: const Text('Details'),
+              ),
+              TextButton(
+                onPressed: () => context.push('/loan-payment/${loan.id}'),
                 child: const Text('Pay now'),
               ),
             ],
           ),
         ],
       ),
-    );
-  }
-
-  Future<void> _showPaymentDialog(BuildContext context, _Loan loan) async {
-    final amount = loan.due;
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Pay ${loan.title}'),
-        content: Text(
-          'Make a demo payment of $amount toward your ${loan.title}. No money will be moved.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Confirm demo payment'),
-          ),
-        ],
-      ),
-    );
-    if (!context.mounted || confirmed != true) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Demo payment of $amount completed.')),
     );
   }
 

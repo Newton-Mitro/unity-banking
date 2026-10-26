@@ -11,14 +11,14 @@ class _NotificationsPageState extends State<NotificationsPage> {
   final _alerts = [
     _Alert(
       title: 'Card payment',
-      description: 'You spent \$84.26 at Grocery Market.',
+      description: 'You spent ৳84.26 at Grocery Market.',
       time: 'Today · 10:42 AM',
       icon: Icons.shopping_bag_outlined,
       unread: true,
     ),
     _Alert(
       title: 'Salary received',
-      description: 'Your monthly salary of \$4,500.00 has been deposited.',
+      description: 'Your monthly salary of ৳4,500.00 has been deposited.',
       time: 'Yesterday',
       icon: Icons.account_balance_outlined,
       unread: true,

@@ -91,6 +91,13 @@ class ProfilePage extends StatelessWidget {
               subtitle: 'Manage your linked accounts',
               onTap: () => context.push('/accounts'),
             ),
+            _settingTile(
+              context,
+              icon: Icons.people_outline_rounded,
+              title: 'Beneficiaries',
+              subtitle: 'Manage saved transfer recipients',
+              onTap: () => context.push('/beneficiaries'),
+            ),
             const SizedBox(height: 22),
             _heading(context, 'Preferences'),
             const SizedBox(height: 10),

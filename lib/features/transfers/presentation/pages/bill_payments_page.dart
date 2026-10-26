@@ -141,7 +141,7 @@ class _BillPaymentsPageState extends State<BillPaymentsPage> {
                 decimal: true,
               ),
               decoration: const InputDecoration(
-                prefixText: '\$ ',
+                prefixText: '৳ ',
                 hintText: '0.00',
               ),
               validator: (value) {
@@ -183,7 +183,7 @@ class _BillPaymentsPageState extends State<BillPaymentsPage> {
       builder: (context) => AlertDialog(
         title: const Text('Confirm bill payment'),
         content: Text(
-          '${details.company}\nReference: ${_referenceController.text.trim()}\nFrom: $_account\nAmount: \$${amount.toStringAsFixed(2)}\n\nDemo only — no payment will be made.',
+          '${details.company}\nReference: ${_referenceController.text.trim()}\nFrom: $_account\nAmount: ৳${amount.toStringAsFixed(2)}\n\nDemo only — no payment will be made.',
         ),
         actions: [
           TextButton(
@@ -208,7 +208,7 @@ class _BillPaymentsPageState extends State<BillPaymentsPage> {
         ),
         title: const Text('Payment complete'),
         content: Text(
-          '\$${amount.toStringAsFixed(2)} was paid to ${details.company} in this demo.',
+          '৳${amount.toStringAsFixed(2)} was paid to ${details.company} in this demo.',
           textAlign: TextAlign.center,
         ),
         actions: [

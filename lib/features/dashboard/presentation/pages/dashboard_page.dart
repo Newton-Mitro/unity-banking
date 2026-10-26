@@ -17,21 +17,21 @@ class DashboardPage extends StatelessWidget {
     (
       title: 'Grocery Market',
       subtitle: 'Shopping · Today, 10:42 AM',
-      amount: '-\$84.26',
+      amount: '-৳84.26',
       icon: Icons.shopping_basket_outlined,
       income: false,
     ),
     (
       title: 'Monthly salary',
       subtitle: 'Income · Yesterday',
-      amount: '+\$4,500.00',
+      amount: '+৳4,500.00',
       icon: Icons.account_balance_outlined,
       income: true,
     ),
     (
       title: 'Blue Bottle Coffee',
       subtitle: 'Food & drink · Oct 24',
-      amount: '-\$12.50',
+      amount: '-৳12.50',
       icon: Icons.local_cafe_outlined,
       income: false,
     ),
@@ -161,7 +161,7 @@ class DashboardPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '\$45,230.50',
+            '৳45,230.50',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w800,
@@ -178,7 +178,7 @@ class DashboardPage extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               const Text(
-                '+\$2,840.20',
+                '+৳2,840.20',
                 style: TextStyle(
                   color: Color(0xFF9CF0C4),
                   fontWeight: FontWeight.w700,

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/banking_bottom_nav.dart';
 
 typedef _BankAccount = ({
+  String id,
   String title,
   String number,
   String balance,
@@ -15,32 +16,27 @@ class AccountsPage extends StatelessWidget {
 
   static const _accounts = [
     (
+      id: 'checking-4829',
       title: 'Everyday Checking',
       number: '•••• 4829',
-      balance: '\$35,210.00',
+      balance: '৳35,210.00',
       icon: Icons.account_balance_wallet_outlined,
       type: 'Checking account',
     ),
     (
+      id: 'savings-9102',
       title: 'High-yield Savings',
       number: '•••• 9102',
-      balance: '\$10,020.50',
+      balance: '৳10,020.50',
       icon: Icons.savings_outlined,
       type: 'Savings account',
-    ),
-    (
-      title: 'Investment Portfolio',
-      number: '•••• 3847',
-      balance: '\$7,200.00',
-      icon: Icons.show_chart_rounded,
-      type: 'Investment account',
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My accounts')),
+      appBar: AppBar(title: const Text('Deposit accounts')),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
         children: [
@@ -68,7 +64,7 @@ class AccountsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  '\$52,430.50',
+                  '৳45,230.50',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,
@@ -81,12 +77,12 @@ class AccountsPage extends StatelessWidget {
                 const Row(
                   children: [
                     Expanded(
-                      child: _BalanceDetail(label: 'Accounts', value: '3'),
+                      child: _BalanceDetail(label: 'Accounts', value: '2'),
                     ),
                     Expanded(
                       child: _BalanceDetail(
                         label: 'Available credit',
-                        value: '\$5,000',
+                        value: '৳5,000',
                       ),
                     ),
                   ],
@@ -96,13 +92,27 @@ class AccountsPage extends StatelessWidget {
           ),
           const SizedBox(height: 26),
           Text(
-            'Your accounts',
+            'Checking and savings',
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 12),
           ..._accounts.map((account) => _accountCard(context, account)),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: () => context.push('/loans'),
+            icon: const Icon(Icons.real_estate_agent_outlined),
+            label: const Text('View loan accounts'),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size.fromHeight(52),
+              foregroundColor: const Color(0xFF242269),
+              side: const BorderSide(color: Color(0xFF242269)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: () => _showDemoMessage(context),
@@ -131,7 +141,7 @@ class AccountsPage extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         child: InkWell(
           borderRadius: BorderRadius.circular(18),
-          onTap: () => _showAccountDetails(context, account),
+          onTap: () => context.push('/deposit-accounts/${account.id}'),
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -179,68 +189,6 @@ class AccountsPage extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<void> _showAccountDetails(
-    BuildContext context,
-    _BankAccount account,
-  ) async {
-    final pageContext = context;
-    await showModalBottomSheet<void>(
-      context: context,
-      showDragHandle: true,
-      builder: (sheetContext) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                account.title,
-                style: Theme.of(
-                  sheetContext,
-                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
-              ),
-              const SizedBox(height: 8),
-              Text('${account.type} · ${account.number}'),
-              const SizedBox(height: 18),
-              Text(
-                account.balance,
-                style: Theme.of(sheetContext).textTheme.headlineSmall?.copyWith(
-                  color: const Color(0xFF242269),
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              const SizedBox(height: 18),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.pop(sheetContext);
-                        pageContext.push('/statements');
-                      },
-                      child: const Text('Statements'),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(sheetContext);
-                        pageContext.push('/transfers');
-                      },
-                      child: const Text('Transfer'),
-                    ),
-                  ),
-                ],
-              ),
-            ],
           ),
         ),
       ),
